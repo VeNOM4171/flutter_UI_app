@@ -1,6 +1,6 @@
 # choose_next_story
 
-A new Flutter application.
+<img src="https://github.com/VeNOM4171/flutter_UI_apps/blob/main/screenshots/Screenshot_20201229-201643.png" height="300em">
 
 ## Getting Started
 
