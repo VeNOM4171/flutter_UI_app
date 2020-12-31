@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:alarm_app/constants/alarm_page_constants.dart';
+import 'package:flutter/widgets.dart';
+
 
 class AddAlarm extends StatefulWidget {
   @override
@@ -9,6 +11,8 @@ class AddAlarm extends StatefulWidget {
 class _AddAlarmState extends State<AddAlarm> {
 
   int initVolume = 62;
+  int hour = 0;
+  int minute = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -25,46 +29,51 @@ class _AddAlarmState extends State<AddAlarm> {
       body: Center(
         child: Column(
           children: [
+
             Expanded(
-              child: Text(
-                  'Alarm in',
-                style: TextStyle(
-                  color: kLightBlackColour
-                ),
-              ),
-            ),
-            Expanded(
+              flex: 8,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
+                    flex: 3,
                     child: Container(
+                      margin: EdgeInsets.all(20.0),
+                      padding: EdgeInsets.only(left: 40.0),
                       width: 20,
                       height: 240,
                       decoration: BoxDecoration(
-                        color: Colors.teal,
+                        color: Colors.transparent,
                       ),
-                      child: ListWheelScrollView(
-                        offAxisFraction: -0.3,
-                        useMagnifier: true,
-                        itemExtent: 50,
-                        children: [
-                          Text('12',
-                          style: kTimeTextStyle,
-                          ),
-                          Text('1',
-                            style: kTimeTextStyle,),
-                          Text('2',
-                            style: kTimeTextStyle,),
-                          Text('12',
-                            style: kTimeTextStyle,),
-                          Text('1',
-                            style: kTimeTextStyle,),
+                      child: Center(
+                        child: ListWheelScrollView(
+                          onSelectedItemChanged: (newHour) {
+                            setState(() {
+                              hour = newHour;
+                            });
+                          },
+                          offAxisFraction: -0.3,
+                          useMagnifier: true,
+                          itemExtent: 50,
+                          children: [
+                            Text('20',
+                            style: kTimeTextStyle,
+                            ),
+                            Text('20',
+                              style: kTimeTextStyle,),
+                            Text('20',
+                              style: kTimeTextStyle,),
+                            Text('20',
+                              style: kTimeTextStyle,),
+                            Text('20',
+                              style: kTimeTextStyle,),
 
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
+
                   Expanded(
                     child: Text(':',
                       style: TextStyle(
@@ -72,11 +81,57 @@ class _AddAlarmState extends State<AddAlarm> {
                         fontWeight: FontWeight.w900,
                       ),
                     ),
-                  )
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      margin: EdgeInsets.all(0.0),
+                      padding: EdgeInsets.only(right: 40.0),
+                      width: 20,
+                      height: 240,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                      ),
+                      child: Center(
+                        child: ListWheelScrollView(
+                          onSelectedItemChanged: (newMinute) {
+                            setState(() {
+                              minute = newMinute;
+                            });
+                          },
+                          offAxisFraction: 0.3,
+                          useMagnifier: true,
+                          itemExtent: 50,
+                          children: [
+                            Text('12',
+                              style: kTimeTextStyle,
+                            ),
+                            Text('13',
+                              style: kTimeTextStyle,),
+                            Text('14',
+                              style: kTimeTextStyle,),
+                            Text('15',
+                              style: kTimeTextStyle,),
+                            Text('16',
+                              style: kTimeTextStyle,),
+
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            Expanded(child: Text('0 Hours 0 Minute')),
+            Expanded(
+              child: Text(
+                'Alarm in',
+                style: TextStyle(
+                    color: kLightBlackColour
+                ),
+              ),
+            ),
+            Expanded(child: Text('$hour Hours $minute Minute')),
             SizedBox(
               width: 320,
               height: 10.0,
@@ -157,17 +212,6 @@ class _AddAlarmState extends State<AddAlarm> {
                 },
               ),
             ),
-            // Container(
-            //   margin: EdgeInsets.all(15.0),
-            //   padding: EdgeInsets.all(5.0),
-            //   width: double.infinity,
-            //   height: kAddBtnHeight,
-            //   decoration: BoxDecoration(
-            //     color: Color(0xFF1E4938),
-            //     borderRadius: BorderRadius.circular(30.0),
-            //   ),
-            //   child: ,
-            // )
           ],
         ),
       )
